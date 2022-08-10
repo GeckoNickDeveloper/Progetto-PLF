@@ -1,6 +1,8 @@
 consult('trasformate.pl').
-X = [1.0, 3.7, 10.9, -2.6, 0, 0, 0.5, 14, 13.9],
-size(X, S),
-dct(X, R),
-
-idct(R, B).
+X = [(7,8), (1.4,0), (0,-3), (0,0)],
+dft(X, R),
+idft(R, B).
+#
+#Z = (7,8),
+#W = (0, -3.4),
+#complex_prod(Z, W, C).

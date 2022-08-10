@@ -7,11 +7,11 @@ main = do
   let val_dct = dct [1.0, 3.7, 10.9, -2.6, 0, 0, 0.5, 14, 13.9]
   let val_dft = dft [(7.0 :+ 8.0), (1.4 :+ 0.0), (0.0 :+ (-3.0)), (0.0 :+ 0.0)]
 
-  print (val_dct)
-  print (idct val_dct)
+  {-print (val_dct)
+  print (idct val_dct)-}
 
-  {-print (stringify_complex_list (val_dft))
-  print (stringify_complex_list (idft val_dft))-}
+  print (stringify_complex_list (val_dft))
+  print (stringify_complex_list (idft val_dft))
 
   
 
