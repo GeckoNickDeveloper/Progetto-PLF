@@ -1,10 +1,10 @@
 /*/*/*.o
 /*/*/*.hi
 /*/*.aux
-/*/*.fdb_latexmd
+/*/*.fdb_latexmk
 /*/*.fls
 /*/*.log
 /*/*.out
 /*/*.synctex.gz
 /*/*.toc
-doc.img
+doc/img
