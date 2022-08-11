@@ -1,2 +1,10 @@
 /*/*/*.o
 /*/*/*.hi
+/*/*/*.aux
+/*/*/*.fdb_latexmd
+/*/*/*.fls
+/*/*/*.log
+/*/*/*.out
+/*/*/*.synctex.gz
+/*/*/*.toc
+doc.img
