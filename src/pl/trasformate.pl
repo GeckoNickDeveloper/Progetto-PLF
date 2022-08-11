@@ -61,9 +61,9 @@ generate_dft(L, S, K, C) :- ((K == S) -> C = [];
 sum_terms_dft([], _, _, _, (0,0)).
 sum_terms_dft([H | T], S, K, N, C) :- 
       N1 is N + 1,
-      O is (-((2 * pi) / S) * N * K),
+      THETA is (-((2 * pi) / S) * N * K),
       sum_terms_dft(T, S, K, N1, C1),
-      complex_prod(H, (cos(O),sin(O)), P),
+      complex_prod(H, (cos(THETA),sin(THETA)), P),
       complex_sum(P, C1, C).
 
 /* IDFT */

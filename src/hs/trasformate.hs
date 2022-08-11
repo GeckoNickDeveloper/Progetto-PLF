@@ -4,14 +4,45 @@ import Data.Complex
 
 main :: IO()
 main = do
-  let val_dct = dct [1.0, 3.7, 10.9, -2.6, 0, 0, 0.5, 14, 13.9]
-  let val_dft = dft [(7.0 :+ 8.0), (1.4 :+ 0.0), (0.0 :+ (-3.0)), (0.0 :+ 0.0)]
+  {- let val_dct = dct [1.0, 3.7, 10.9, -2.6, 0, 0, 0.5, 14, 13.9]
+  let val_dft = dft [(7.0 :+ 8.0), (1.4 :+ 0.0), (0.0 :+ (-3.0)), (0.0 :+ 0.0)] -}
+
+  putStrLn "Inserisci una lista di numeri reali fra parentesi quadre ([]), separati da virgole:"
+  c <- getLine
+  
+  let val_dct = dct (read c :: [Double])
+  
+  putStrLn "DCT:"
+  putStrLn $ show val_dct
+
+  putStrLn "IDCT:"
+  putStrLn $ show (idct val_dct)
+
+  putStrLn "\n\n"
+
+  putStrLn "Inserisci una lista di numeri complessi ([(R :+ I), ...]):"
+  c <- getLine
+  
+  let val_dft = dft (read c :: [Complex Double])
+  
+  putStrLn "DFT:"
+  putStrLn $ show val_dft
+
+  putStrLn "IDFT:"
+  print (stringify_complex_list (idft val_dft))
+
+
+
+
+
+
+
 
   {-print (val_dct)
   print (idct val_dct)-}
 
-  print (stringify_complex_list (val_dft))
-  print (stringify_complex_list (idft val_dft))
+  {-print (stringify_complex_list (val_dft))-}
+  {-print (stringify_complex_list (idft val_dft))-}
 
   
 
