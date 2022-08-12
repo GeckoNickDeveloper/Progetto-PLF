@@ -150,3 +150,13 @@ stringify_complex_list [] = []
 stringify_complex_list (x:xs) = (show x) : (stringify_complex_list xs)
 
 
+
+
+
+
+{- # Da implementare
+parse_real_list :: String -> [Double]
+parse_real_list "" = []
+# Da implementare
+parse_complex_list :: String -> [Complex Double]
+parse_complex_list "" = [] -}

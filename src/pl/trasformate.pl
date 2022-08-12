@@ -1,3 +1,24 @@
+/* Main */
+main :-
+  nl,
+  write('Progetto PLF'), nl, nl, nl,
+  acquire_real_list(RealList), nl,
+  dct(RealList, C),
+  write('Risultato DCT:'), nl,
+  write(C), nl, nl,
+  idct(C, DctOriginal),
+  write('Risultato IDCT:'), nl,
+  write(DctOriginal), nl, nl,nl,
+  
+  acquire_complex_list(ComplexList), nl,
+  dft(ComplexList, X),
+  write('Risultato DFT:'), nl,
+  write(X), nl, nl,
+  idft(X, DftOriginal),
+  write('Risultato IDFT:'), nl,
+  write(DftOriginal), nl.
+
+
 /* DCT */
 dct([], []).
 dct([X | Y], C) :-  size([X | Y], S),
