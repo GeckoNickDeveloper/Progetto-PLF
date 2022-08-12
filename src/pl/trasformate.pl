@@ -99,3 +99,20 @@ complex_prod((ZR, ZI), (WR, WI), (R,I)) :-  R is (ZR * WR - ZI * WI),
 complex_sum((ZR, ZI), (WR, WI), (R,I)) :- R is ZR + WR, I is ZI + WI.
 
 complex_div_real((ZR, ZI), N, (R, I)) :- R is ZR / N, I is ZI / N.
+
+
+getRealList(List) :-
+  write('Inserisci una lista di numeri reali:'), nl,
+  read(List),
+  ((check_real_list(List)) -> !; write('Errore.'), nl, getRealList(List)).
+
+getComplexList(List) :-
+  write('Inserisci una lista di numeri complessi:'), nl,
+  read(List),
+  ((check_complex_list(List)) -> !; write('Errore.'), nl, getComplexList(List)).
+
+check_real_list([]).
+check_real_list([A | L]) :- ((number(A)) -> check_real_list(L); fail).
+
+check_complex_list([]).
+check_complex_list([(A, B) | L]) :- ((number(A), number(B)) -> check_complex_list(L); fail).

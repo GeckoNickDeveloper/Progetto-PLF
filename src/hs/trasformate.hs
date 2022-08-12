@@ -1,6 +1,6 @@
 import Data.List
 import Data.Complex
-
+import Data.Maybe
 
 main :: IO()
 main = do
@@ -144,14 +144,14 @@ sum_terms_idft (x:xs) size n k =
 
 
 
-
-
-
-
-
-
-
-
+{- Auxilary -}
 stringify_complex_list :: [Complex Double] -> [String]
 stringify_complex_list [] = []
 stringify_complex_list (x:xs) = (show x) : (stringify_complex_list xs)
+
+{- acquireRealList :: IO [Double]
+acquireRealList = do
+  text <- getLine
+  case (readMaybe text :: [Double]) of
+    Just x -> return x
+    Nothing -> putStrLn "\nErrore: inserire solo una lista di numeri reali:\n" >> acquireRealList -}
