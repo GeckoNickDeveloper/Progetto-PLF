@@ -101,15 +101,15 @@ complex_sum((ZR, ZI), (WR, WI), (R,I)) :- R is ZR + WR, I is ZI + WI.
 complex_div_real((ZR, ZI), N, (R, I)) :- R is ZR / N, I is ZI / N.
 
 
-getRealList(List) :-
+acquire_real_list(List) :-
   write('Inserisci una lista di numeri reali:'), nl,
   read(List),
-  ((check_real_list(List)) -> !; write('Errore.'), nl, getRealList(List)).
+  ((check_real_list(List)) -> !; write('Errore.'), nl, acquire_real_list(List)).
 
-getComplexList(List) :-
+acquire_complex_list(List) :-
   write('Inserisci una lista di numeri complessi:'), nl,
   read(List),
-  ((check_complex_list(List)) -> !; write('Errore.'), nl, getComplexList(List)).
+  ((check_complex_list(List)) -> !; write('Errore.'), nl, acquire_complex_list(List)).
 
 check_real_list([]).
 check_real_list([A | L]) :- ((number(A)) -> check_real_list(L); fail).
