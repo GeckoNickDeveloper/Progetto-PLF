@@ -1,16 +1,16 @@
 import Data.List
 import Data.Complex
-import Data.Maybe
+import Text.Read
 
 main :: IO()
 main = do
-  {- let val_dct = dct [1.0, 3.7, 10.9, -2.6, 0, 0, 0.5, 14, 13.9]
-  let val_dft = dft [(7.0 :+ 8.0), (1.4 :+ 0.0), (0.0 :+ (-3.0)), (0.0 :+ 0.0)] -}
 
-  putStrLn "Inserisci una lista di numeri reali fra parentesi quadre ([]), separati da virgole:"
-  c <- getLine
-  
-  let val_dct = dct (read c :: [Double])
+  {- putStrLn "Inserisci una lista di numeri reali fra parentesi quadre ([]), separati da virgole:"
+  c <- getLine -}
+
+  realList <- acquire_real_list
+
+  let val_dct = dct realList--dct (read c :: [Double])
   
   putStrLn "DCT:"
   putStrLn $ show val_dct
@@ -20,10 +20,9 @@ main = do
 
   putStrLn "\n\n"
 
-  putStrLn "Inserisci una lista di numeri complessi ([(R :+ I), ...]):"
-  c <- getLine
+  complexList <- acquire_complex_list
   
-  let val_dft = dft (read c :: [Complex Double])
+  let val_dft = dft complexList
   
   putStrLn "DFT:"
   putStrLn $ show val_dft
@@ -151,12 +150,26 @@ stringify_complex_list (x:xs) = (show x) : (stringify_complex_list xs)
 
 
 
+acquire_real_list :: IO [Double]
+acquire_real_list = do
+  putStrLn "Inserisci una lista di numeri reali"
+  line <- getLine
+  
+  case readEither line :: Either String [Double] of
+    Left err -> do
+      putStrLn "Errore. \n"
+      acquire_real_list
+    Right value -> return (value)
 
 
 
-{- # Da implementare
-parse_real_list :: String -> [Double]
-parse_real_list "" = []
-# Da implementare
-parse_complex_list :: String -> [Complex Double]
-parse_complex_list "" = [] -}
+acquire_complex_list :: IO [Complex Double]
+acquire_complex_list = do
+  putStrLn "Inserisci una lista di numeri complessi"
+  line <- getLine
+  
+  case readEither line :: Either String [Complex Double] of
+    Left err -> do
+      putStrLn "Errore. \n"
+      acquire_complex_list
+    Right value -> return (value)
