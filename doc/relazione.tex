@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \graphicspath{ {./img/} }
 
+
 \begin{document}
 
 	\centerline{\includegraphics{logo1}}
@@ -37,7 +38,7 @@
 	\part*{Implementazione di DCT e DFT in Haskell e Prolog}
 	\tableofcontents % Indice
 
-
+	
 	\chapter{Specifica del problema}
 	Si propone di implementare le funzioni di elaborazione segnali e immagini denominate DCT (\textit{Discrete Cosine Transform}) e DFT (\textit{Discrete Fourier Transform}), e le relative funzioni inverse IDCT e IDFT. \\
 	\section*{Nota}
@@ -45,9 +46,29 @@
 	In questa documentazione ci riferiremo alle funzioni rispettivamente come DCT (per la funzione DCT tipo II) e IDCT (per la funzione DCT tipo III).
 	
 	\chapter{Analisi del problema}
+	% Il programma prevede l'inserimento di due array di numeri; il primo array verrà richiesto all'avvio del programma per il calcolo di DCT e IDCT, mentre il secondo array verrà richiesto una volta effettuati i dovuti calcoli sul primo array e sarà utilizzato per calcolare DFT e IDFT.
+
 	
+	\section{Dati di ingresso del problema}
+	
+	\begin{itemize}
+		\item un array di numeri reali per il calcolo di DCT e IDCT;
+		\item un array di numeri complessi per il calcolo di DFT e IDFT.
+	\end{itemize}
+	\section{Dati di uscita del problema}
+	\begin{itemize}
+		\item un array di numeri reali calcolati con DCT;
+		\item un array di numeri reali calcolati con IDCT;
+		\item un array di numeri complessi calcolato con DFT;
+		\item un array di numeri complessi calcolato con IDFT.
+	\end{itemize}
+	\section{Relazioni intercorrenti tra i dati}
+
 	
 	\chapter{Progettazione dell'algoritmo}
+	\section{Scelte di progetto}
+
+	\section{Passi dell'algoritmo}
 	
 	\chapter{Implementazione dell'algoritmo}
 
