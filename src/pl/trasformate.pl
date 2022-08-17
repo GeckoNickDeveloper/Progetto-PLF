@@ -1,9 +1,11 @@
 /* MAIN */
-/* Il programma accetta in input una lista di numeri reali, calcolandone e stampandone i risultati:
+/* Il programma accetta in input una lista di numeri reali,
+   calcolandone e stampandone i risultati:
      - la trasformata discreta del coseno (DCT);
      - relativa trasformata inversa (IDCT).
    
-   Viene poi richiesta in input una lista di numeri complessi, calcolandone e stampandone i risultati:
+   Viene poi richiesta in input una lista di numeri complessi,
+   calcolandone e stampandone i risultati:
      - la trasformata discreta di Fourier (DFT);
      - relativa trasformata inversa. */
 main :-

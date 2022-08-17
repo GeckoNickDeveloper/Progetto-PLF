@@ -11,11 +11,13 @@ import Text.Read
 
 
 {- MAIN -}
-{- Il programma accetta in input una lista di numeri reali, calcolandone e stampandone i risultati:
+{- Il programma accetta in input una lista di numeri reali,
+   calcolandone e stampandone i risultati:
      - la trasformata discreta del coseno (DCT);
      - relativa trasformata inversa (IDCT).
    
-   Viene poi richiesta in input una lista di numeri complessi, calcolandone e stampandone i risultati:
+   Viene poi richiesta in input una lista di numeri complessi,
+   calcolandone e stampandone i risultati:
      - la trasformata discreta di Fourier (DFT);
      - relativa trasformata inversa. -}
 main :: IO()
@@ -29,21 +31,21 @@ main = do
   real_list <- acquire_real_list
   let val_dct = dct real_list
   
-  putStrLn "DCT:"
+  putStrLn "\nDCT:"
   putStrLn $ show val_dct
-  putStrLn "\n"
+  putStr "\n"
   putStrLn "IDCT:"
   putStrLn $ show (idct val_dct)
 
-  putStrLn "\n\n"
+  putStr "\n\n"
 
   complex_list <- acquire_complex_list
   
   let val_dft = dft complex_list
   
-  putStrLn "DFT:"
+  putStrLn "\nDFT:"
   putStrLn $ show val_dft
-  putStrLn "\n"
+  putStr "\n"
   putStrLn "IDFT:"
   print (stringify_complex_list (idft val_dft))
 
@@ -169,7 +171,7 @@ acquire_real_list = do
   
   case readEither line :: Either String [Double] of
     Left err -> do
-      putStrLn "Errore. \n"
+      putStrLn "\nErrore."
       acquire_real_list
     Right value -> return (value)
 
@@ -185,6 +187,6 @@ acquire_complex_list = do
   
   case readEither line :: Either String [Complex Double] of
     Left err -> do
-      putStrLn "\nErrore. \n"
+      putStrLn "\nErrore."
       acquire_complex_list
     Right value -> return (value)
