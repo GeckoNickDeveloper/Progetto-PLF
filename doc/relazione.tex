@@ -40,7 +40,7 @@
 
 	
 	\chapter{Specifica del problema}
-	Si propone di implementare le funzioni di elaborazione segnali e immagini denominate DCT
+	Si propone di implementare le funzioni denominate DCT
 	(\textit{Discrete Cosine Transform}) e DFT (\textit{Discrete Fourier Transform}), 
 	e le relative funzioni inverse IDCT e IDFT. \\
 	\section*{Nota}
@@ -75,7 +75,7 @@
   \subsection{IDCT}
   Utilizzando la \textit{Inverse Discrete Cosine Transform} su una sequenza di numeri reali, l' $n$-esimo elemento sarà calcolato con la seguente formula:
   \[x(n) = \frac{1}{2N}\left\{C(0) + \sum_{k = 1}^{N -1} 2C(k) cos\left[\frac{\pi(2n + 1)k}{2N}\right]\right\}\]
-  \noindent La sequenza di numeri iniziali con cui calcolare la \textit{IDCT} verrà presa dall'output della \textit{DCT} e, a meno di errori di approssimazione, sarà uguale alla sequenza di numeri utilizzata durante il calcolo della \textit{DCT}.
+  \noindent La sequenza di numeri iniziali con cui calcolare la \textit{IDCT} verrà presa dall'output della \textit{DCT} e, a meno di errori di approssimazione, sarà uguale alla sequenza di numeri utilizzata per il calcolo della \textit{DCT}.
 
   \subsection{DFT}
   Utilizzando la \textit{Discrete Fourier Transform} su una sequenza di numeri complessi, il $k$-esimo elemento sarà calcolato con la seguente formula:
@@ -84,7 +84,7 @@
   \subsection{IDFT}
   Utilizzando la \textit{Inverse Discrete Fourier Transform} su una sequenza di numeri complessi, l' $n$-esimo elemento sarà calcolato con la seguente formula:
   \[x_p(n) = \frac{1}{N}\sum_{k = 0}^{N -1} X_p(k) e^{j\frac{2\pi}{N}nk}\]
-  \noindent La sequenza di numeri iniziali con cui calcolare la \textit{IDFT} verrà presa dall'output della \textit{DFT} e, a meno di errori di approssimazione, sarà uguale alla sequenza di numeri utilizzata durante il calcolo della \textit{DFT}.
+  \noindent La sequenza di numeri iniziali con cui calcolare la \textit{IDFT} verrà presa dall'output della \textit{DFT} e, a meno di errori di approssimazione, sarà uguale alla sequenza di numeri utilizzata per il calcolo della \textit{DFT}.
 	
 	\chapter{Progettazione dell'algoritmo}
 	\section{Scelte di progetto}
