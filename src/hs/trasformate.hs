@@ -12,39 +12,45 @@ import Text.Read
 
 {- MAIN -}
 {- Il programma accetta in input una lista di numeri reali, calcolandone e stampandone i risultati:
-     - la trasformata discreta del coseno di tipo 2 (DCT-II);
-     - relativa trasformata inversa (IDCT-II).
+     - la trasformata discreta del coseno (DCT);
+     - relativa trasformata inversa (IDCT).
    
    Viene poi richiesta in input una lista di numeri complessi, calcolandone e stampandone i risultati:
      - la trasformata discreta di Fourier (DFT);
      - relativa trasformata inversa. -}
 main :: IO()
 main = do
-  realList <- acquire_real_list
-  let val_dct = dct realList
+  putStrLn "Progetto della sessione autunnale del corso Programmazione Logica e Funzionale"
+  putStrLn "Anno 2021/2022"
+  putStrLn "Corso tenuto dal prof. Marco Bernardo"
+  putStrLn "Progetto realizzato da: Barzotti Cristian e Kania Nicholas\n\n"
+
+
+  real_list <- acquire_real_list
+  let val_dct = dct real_list
   
   putStrLn "DCT:"
   putStrLn $ show val_dct
-
+  putStrLn "\n"
   putStrLn "IDCT:"
   putStrLn $ show (idct val_dct)
 
   putStrLn "\n\n"
 
-  complexList <- acquire_complex_list
+  complex_list <- acquire_complex_list
   
-  let val_dft = dft complexList
+  let val_dft = dft complex_list
   
   putStrLn "DFT:"
   putStrLn $ show val_dft
-
+  putStrLn "\n"
   putStrLn "IDFT:"
   print (stringify_complex_list (idft val_dft))
 
 
 
 {- DCT -}
-{- Funzione per il calcolo della DCT (versione semplificata) -}
+{- Funzione per il calcolo della DCT -}
 dct :: [Double] -> [Double]
 dct [] = []
 dct xs = generate_dct xs (length xs) 0
@@ -54,39 +60,47 @@ generate_dct :: [Double] -> Int -> Int -> [Double]
 generate_dct [] _ _ = []
 generate_dct xs size k
   | k == size = []
-  | otherwise = (sum_terms_dct xs size k 0) : (generate_dct xs size (k + 1))
+  | otherwise = 
+    (sum_terms_dct xs size k 0) : 
+    (generate_dct xs size (k + 1))
 
 {- Effettua il calcolo del k-esimo elemento della trasformata -}
 sum_terms_dct :: [Double] -> Int -> Int -> Int -> Double
 sum_terms_dct [] _ _ _ = 0.0
 sum_terms_dct (x:xs) size k n =
-  2 * x * cos (pi *  fromIntegral ((2 * n + 1) * k) / fromIntegral (2 * size)) + sum_terms_dct xs size k (n + 1)
+  2 * x * 
+  cos (pi *  fromIntegral ((2 * n + 1) * k) / fromIntegral (2 * size)) + 
+  sum_terms_dct xs size k (n + 1)
 
 
 
 {- IDCT -}
-{- Funzione per il calcolo della IDCT (versione semplificata) -}
+{- Funzione per il calcolo della IDCT -}
 idct :: [Double] -> [Double]
 idct [] = []
 idct xs = generate_idct xs (length xs) 0
 
-{- Genera l'anti-trasformata (serie originale) -}
+{- Genera la trasformata inversa (serie originale) -}
 generate_idct :: [Double] -> Int -> Int -> [Double]
 generate_idct [] _ _ = []
 generate_idct (x:xs) size n
   | n == size = []
-  | otherwise = ((x + sum_terms_idct xs size n 1) / fromIntegral (2 * size)) : (generate_idct (x:xs) size (n + 1))
+  | otherwise = 
+    ((x + sum_terms_idct xs size n 1) / fromIntegral (2 * size)) : 
+    (generate_idct (x:xs) size (n + 1))
 
-{- Effettua il calcolo della sommatoria per k-esimo elemento dell'anti-trasformata -}
+{- Effettua il calcolo della sommatoria per k-esimo elemento della trasformata inversa -}
 sum_terms_idct :: [Double] -> Int -> Int -> Int -> Double
 sum_terms_idct [] _ _ _ = 0.0
 sum_terms_idct (x:xs) size n k =
-  2 * x * cos (pi *  fromIntegral ((2 * n + 1) * k) / fromIntegral (2 * size)) + sum_terms_idct xs size n (k + 1)
+  2 * x * 
+  cos (pi *  fromIntegral ((2 * n + 1) * k) / fromIntegral (2 * size)) + 
+  sum_terms_idct xs size n (k + 1)
 
 
 
 {- DFT -}
-{- Funzione per il calcolo della DFT (versione semplificata) -}
+{- Funzione per il calcolo della DFT -}
 dft :: [Complex Double] -> [Complex Double]
 dft [] = []
 dft xs = generate_dft xs (length xs) 0
@@ -96,7 +110,9 @@ generate_dft :: [Complex Double] -> Int -> Int -> [Complex Double]
 generate_dft [] _ _ = []
 generate_dft xs size k
   | k == size = []
-  | otherwise = (sum_terms_dft xs size k 0) : (generate_dft xs size (k + 1))
+  | otherwise = 
+    (sum_terms_dft xs size k 0) : 
+    (generate_dft xs size (k + 1))
 
 {- Effettua il calcolo del k-esimo elemento della trasformata -}
 sum_terms_dft :: [Complex Double] -> Int -> Int -> Int -> Complex Double
@@ -110,17 +126,19 @@ sum_terms_dft (x:xs) size k n =
 
 
 {- IDFT -}
-{- Funzione per il calcolo della IDFT (versione semplificata) -}
+{- Funzione per il calcolo della IDFT -}
 idft :: [Complex Double] -> [Complex Double]
 idft [] = []
 idft xs = generate_idft xs (length xs) 0
 
-{- Genera l'anti-trasformata (serie originale) -}
+{- Genera la trasformata inversa (serie originale) -}
 generate_idft :: [Complex Double] -> Int -> Int -> [Complex Double]
 generate_idft [] _ _ = []
 generate_idft xs size n
   | n == size = []
-  | otherwise = (sum_terms_idft xs size n 0 / (fromIntegral size)) : (generate_idft xs size (n + 1))
+  | otherwise = 
+    (sum_terms_idft xs size n 0 / (fromIntegral size)) : 
+    (generate_idft xs size (n + 1))
 
 {- Calcolo della sommatoria per il k-esimo elemento -}
 sum_terms_idft :: [Complex Double] -> Int -> Int -> Int -> Complex Double
@@ -144,7 +162,9 @@ stringify_complex_list (x:xs) = (show x) : (stringify_complex_list xs)
    La funzione non termina fino a quando non verrà inserita una lista valida. -}
 acquire_real_list :: IO [Double]
 acquire_real_list = do
-  putStrLn "Inserisci una lista di numeri reali"
+  putStrLn "Inserisci una lista di numeri reali nel formato:\n"
+  putStrLn "\t[<numero>, ...]\n"
+  putStrLn "Per esempio: [1, 0.5, -3]"
   line <- getLine
   
   case readEither line :: Either String [Double] of
@@ -158,11 +178,13 @@ acquire_real_list = do
    La funzione non termina fino a quando non verrà inserita una lista valida. -}
 acquire_complex_list :: IO [Complex Double]
 acquire_complex_list = do
-  putStrLn "Inserisci una lista di numeri complessi"
+  putStrLn "Inserisci una lista di numeri complessi nel formato:\n"
+  putStrLn "\t[<parte reale> :+ <parte immaginaria>, ...]\n"
+  putStrLn "Per esempio: [1 :+ 2, 0.5 :+ -3, 0 :+ 0]"
   line <- getLine
   
   case readEither line :: Either String [Complex Double] of
     Left err -> do
-      putStrLn "Errore. \n"
+      putStrLn "\nErrore. \n"
       acquire_complex_list
     Right value -> return (value)
