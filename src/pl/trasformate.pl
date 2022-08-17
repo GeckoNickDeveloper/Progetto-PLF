@@ -167,24 +167,26 @@ complex_div_real((ZR, ZI), N, (R, I)) :-
 /* Acquisisce una lista di numeri reali da tastiera.
    La funzione non termina fino a quando non verrà inserita una lista valida. */
 acquire_real_list(List) :-
+  repeat,
   write('Inserisci una lista di numeri reali nel formato:'), nl, nl,
   write('\t[<numero>, ...].'), nl, nl,
   write('Per esempio: [1, 0.5, -3].'), nl,
   catch(read(List), Error, true),
   ((check_real_list(List), var(Error)) -> 
-    !; 
-    write('Errore.'), nl, acquire_real_list(List)).
+    !;
+    nl, write('Errore.'), nl, fail).
 
 /* Acquisisce una lista di numeri complessi da tastiera.
    La funzione non termina fino a quando non verrà inserita una lista valida. */
 acquire_complex_list(List) :-
+  repeat,
   write('Inserire una lista di numeri complessi nel formato:'), nl, nl,
   write('\t[(<parte reale>, <parte immaginaria>), ...].'), nl, nl,
   write('Per esempio: [(1,2), (0.5,-3), (0,0)].'), nl,
   catch(read(List), Error, true),
   ((check_complex_list(List), var(Error)) -> 
     !; 
-    write('Errore.'), nl, acquire_complex_list(List)).
+    nl, write('Errore.'), nl, fail).
 
 /* Controlla che una lista sia composta solo da numeri reali */
 check_real_list([]).
